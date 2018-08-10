@@ -1,0 +1,55 @@
+<% include ./partials/header %>
+
+<div class="ui main text container">
+	<div class="ui huge header">
+		Blog App
+	</div>
+	<div class="ui top attached segment">
+		<form action="/blogs/search" method="GET" class="ui form" id="delete">
+			<input type="text" name="search" id="searchField" placeholder="Search blogs..." /> 
+			<input type="submit" class="ui violet basic button" value="Search" />
+		</form>
+	</div>
+	<div class="ui top attached segment">
+		<div class="ui divided items">
+			<% blogs.forEach(function(blog){ %>
+				<div class="item">
+					<div class="image">
+						<img src="<%=blog.image%>" />
+					</div>
+					<div class="content">
+						<a class="header" href="/blogs/<%=blog._id%>"><%=blog.title%></a>
+						<div class="meta">
+							<span><%=blog.created.toDateString()%></span>
+						</div>
+						<div class="description">
+							<%
+							
+							if (blog.hashtags) {
+								var aHashtags = blog.hashtags.split(" ");
+								aHashtags.forEach(function(htag){
+								%>
+									<a href="/blogs/search/?search=<%=htag.replace("#", "")%>"><%=htag%></a> 
+								<% })
+							}%>
+						</div>
+						<div class="description">
+							<%- blog.body.substring(0,100) %>...
+						</div>
+						<div class="extra">
+							<a class="ui floated basic violet button" href="/blogs/<%=blog._id%>">
+								Read More
+								<i class="right chevron icon"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			<%})%>
+		</div>
+	</div>
+</div>
+
+
+
+
+<% include ./partials/footer %>

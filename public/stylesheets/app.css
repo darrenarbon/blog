@@ -1,0 +1,15 @@
+i.code {
+	font-size: 2em;
+}
+
+.container.main {
+	margin-top: 7.0em;
+}
+
+#delete {
+	display: inline;
+}
+
+#searchField {
+	width: 50%;
+}
